@@ -3,8 +3,7 @@ version: '3'
 
 services:
   tiantang:
-    build: .
-    image: tiantang:latest
+    image: boris1993/tiantang-x86-docker:latest
     restart: always
     privileged: true
     networks:
