@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ "$SKIP_UPNP_AUTOCONFIG" = true ]; then
+  exit 0
+fi
+
 RULE_NAME_REGEX="tiantang:(TCP|UDP):"
 
 OLD_IFS="$IFS"
