@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -e
 
 if [ "$SKIP_UPNP_AUTOCONFIG" = true ]; then
   exit 0
