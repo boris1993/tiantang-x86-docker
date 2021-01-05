@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -eu
 
 PROCESS_NAME="ttnode_168"
 LOG_FILE="/var/log/app.log"

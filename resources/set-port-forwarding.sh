@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -eu
 
 if [ "$SKIP_UPNP_AUTOCONFIG" = true ]; then
   exit 0
@@ -21,8 +23,8 @@ EXISTING_RULES=$(upnpc -l | grep -E "$RULE_NAME_REGEX" | awk '{print $2, $3}')
 
 for line in $EXISTING_RULES
 do
-  RULE_PROTOCOL=$(echo $line | awk '{print $1}')
-  FORWARDED_PORT=$(echo $line | awk '{split($2,a,"->"); split(a[2],b,":"); print b[2]}')
+  RULE_PROTOCOL=$(echo "$line" | awk '{print $1}')
+  FORWARDED_PORT=$(echo "$line" | awk '{split($2,a,"->"); split(a[2],b,":"); print b[2]}')
   echo "===Deleting rule $ETH_IP_ADDRESS:$FORWARDED_PORT/$RULE_PROTOCOL==="
   upnpc -d "$FORWARDED_PORT" "$RULE_PROTOCOL"
   echo "===Rule deleted==="
