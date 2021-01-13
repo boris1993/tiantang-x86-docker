@@ -2,8 +2,8 @@
 
 set -eu
 
-PROCESS_PATH="/usr/local/bin/ttnode_168"
-PROCESS_NAME="ttnode_168"
+PROCESS_PATH="/usr/local/bin/ttnode"
+PROCESS_NAME="ttnode"
 DATA_DIR="/data"
 LOG_FILE="/var/log/app.log"
 TIME="$(date '+%F +%T')"
