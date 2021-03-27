@@ -27,12 +27,18 @@ docker network create \
 
 下载或克隆本仓库，将[resources/qemu-aarch64-static](resources/qemu-aarch64-static)文件复制到`$PATH`指定的目录，如`/usr/local/bin`并赋予执行权限，然后执行`docker run --rm --privileged multiarch/qemu-user-static:register`。
 
-因为群晖在重启后会丢失上一步的设定，所以需要添加一项开机触发的任务，在每次开机后重新准备模拟环境。前往`控制面板`--`任务计划`，然后按照如下说明新增一个任务计划：
+因为群晖在重启后会丢失上一步的设定，所以需要添加一项开机触发的任务，在每次开机后重新准备模拟环境。
+
+首先将本仓库的`set_qemu_user_static.sh`放到一个合适的位置，比如我放到了`/var/services/homes/boris1993/scripts`。
+
+然后前往`控制面板`--`任务计划`，然后按照如下说明新增一个任务计划：
 
 - 任务名称：可自选
 - 用户账号：root
 - 事件：开机
-- 任务设置--运行命令：`docker run --rm --privileged multiarch/qemu-user-static:register`
+- 任务设置--运行命令：
+  - 如果不关心日志的话，那么输入`/var/services/homes/boris1993/scripts/set_qemu_user_static.sh`
+  - 如果要保存日志的话，那么输入`/var/services/homes/boris1993/scripts/set_qemu_user_static.sh > /var/services/homes/boris1993/scripts/logs/set_qemu_user_static.log`。注意修改重定向符`>`后面的路径到实际你想要保存日志文件的路径。
 
 ### 构建镜像并运行
 
@@ -50,7 +56,7 @@ docker network create \
 
 ### 手动绑定
 
-如果手机客户端无法自动发现甜糖星愿节点，那么你可以在Docker套件中，进入名为`tiantang`的容器，新建一个终端机，执行`ttnode_168 -p /data`命令。在命令输出中可以看到该节点的`uid`，将其复制到任意二维码生成工具中来生成一个二维码，用手机客户端扫描该二维码即可绑定。
+如果手机客户端无法自动发现甜糖星愿节点，那么你可以在Docker套件中，进入名为`tiantang`的容器，新建一个终端机，执行`ttnode -p /data`命令。在命令输出中可以看到该节点的`uid`，将其复制到任意二维码生成工具中来生成一个二维码，用手机客户端扫描该二维码即可绑定。
 
 ## 监控节点状态
 
@@ -59,3 +65,7 @@ docker network create \
 进程状态监控的脚本会将每一次重启甜糖星愿的行为记录到容器的`/var/log/app.log`文件中。
 
 设置UPnP规则的脚本会将最后一次的操作日志记录到容器的`/var/log/upnp.log`文件中。因为往期日志没有参考意义，也因为输出比较多，为防止日志内容过大，所以决定覆盖之前内容。
+
+## 许可协议
+
+该项目除甜糖星愿可执行文件(`ttnode`)外，依照[MIT协议](LICENSE)开放源代码。
