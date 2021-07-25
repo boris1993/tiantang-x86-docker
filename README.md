@@ -72,6 +72,4 @@ docker network create \
 
 该项目除甜糖星愿可执行文件(`ttnode`)外，依照[MIT协议](LICENSE)开放源代码。
 
-
-## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker?ref=badge_large)
