@@ -1,10 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-set -eu
+set -e
 
-LOG_FILE="/var/log/app.log"
+# shellcheck disable=SC1091
+. /usr/local/bin/set-variables.sh
 
-echo "Starting the cron" >> "$LOG_FILE"
+printf "[%s] Starting the cron\n" "$TIME" >> "$LOG_FILE"
 /etc/init.d/cron start
 
 liveness-check.sh &

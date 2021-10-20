@@ -1,14 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-set -eu
+set -e
 
-PROCESS_PATH="/usr/local/bin/ttnode"
-PROCESS_NAME="ttnode"
-DATA_DIR="/data"
-LOG_FILE="/var/log/app.log"
-TIME="$(date '+%F +%T')"
-
-if ! pgrep ${PROCESS_NAME}; then
-  echo "[$TIME] $PROCESS_NAME seems not running. Starting..." >> ${LOG_FILE}
-  nohup ${PROCESS_PATH} -p ${DATA_DIR} >> ${LOG_FILE} 2>&1 &
+if ! pgrep "${PROCESS_NAME}"; then
+  echo "[$TIME] $PROCESS_NAME seems not running. Starting..." >> "${LOG_FILE}"
+  # shellcheck disable=SC2086 # Word splitting is expected here
+  nohup ${COMMAND} >> ${LOG_FILE} 2>&1 &
 fi

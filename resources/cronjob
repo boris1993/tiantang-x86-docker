@@ -1,2 +1,2 @@
-* * * * * /usr/local/bin/liveness-check.sh
+* * * * * . /usr/local/bin/set-variables.sh; /usr/local/bin/liveness-check.sh
 0 0,8,16 * * * /usr/local/bin/set-port-forwarding.sh

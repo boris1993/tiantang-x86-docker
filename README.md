@@ -1,6 +1,6 @@
 # 适用于x86架构群晖的甜糖星愿Docker镜像
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker?ref=badge_shield)
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker?ref=badge_shield)
 
 甜糖星愿计划是由甜糖公司结合边缘计算云厂商推出的用户激励计划。用户通过贡献闲置带宽，即可获取星愿积分。星愿可用于折现或兑换商品。
 
@@ -58,7 +58,9 @@ docker network create \
 
 ### 手动绑定
 
-如果手机客户端无法自动发现甜糖星愿节点，那么你可以在Docker套件中，进入名为`tiantang`的容器，新建一个终端机，执行`ttnode -p /data`命令。在命令输出中可以看到该节点的`uid`，将其复制到任意二维码生成工具中来生成一个二维码，用手机客户端扫描该二维码即可绑定。
+~~如果手机客户端无法自动发现甜糖星愿节点，那么你可以在Docker套件中，进入名为`tiantang`的容器，新建一个终端机，执行`ttnode -p /data`命令。在命令输出中可以看到该节点的`uid`，将其复制到任意二维码生成工具中来生成一个二维码，用手机客户端扫描该二维码即可绑定。~~
+
+现在你的二维码会在甜糖星愿的容器启动时打印在日志中，如果你没有看到，那么你还可以在服务器上（注意不是在容器里）执行 `docker exec tiantang print-qrcode.sh` 命令，然后你的二维码会显示在你当前的终端里。
 
 ## 监控节点状态
 
