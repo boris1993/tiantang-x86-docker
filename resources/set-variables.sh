@@ -15,3 +15,4 @@ export DATA_DIR
 export LOG_FILE
 export UPNP_LOG_FILE
 export COMMAND
+export PATH
