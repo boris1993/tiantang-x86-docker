@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64/v8 ubuntu:latest
+FROM --platform=linux/arm64/v8 ubuntu:bionic
 
 ENV TZ=Asia/Shanghai
 ENV DEBIAN_FRONTEND=noninteractive

@@ -18,9 +18,9 @@ LISTENING_PORTS=$(netstat -nlp | grep qemu)
 
 EXISTING_RULES=$(upnpc -l | grep -E "$RULE_NAME_REGEX" | awk '{print $2, $3}')
 
-printf "[%s] IP address of the ethernet interface is $ETH_IP_ADDRESS" "$TIME"
-printf "[%s] Outputs of netstat are:\n$LISTENING_PORTS" "$TIME"
-printf "[%s] Existing UPnP rules of tiantang are:\n${EXISTING_RULES}" "$TIME"
+printf "[%s] IP address of the ethernet interface is $ETH_IP_ADDRESS\n" "$TIME"
+printf "[%s] Outputs of netstat are:\n${LISTENING_PORTS}\n" "$TIME"
+printf "[%s] Existing UPnP rules of tiantang are:\n${EXISTING_RULES}\n" "$TIME"
 
 # Find out ports listening and add the UPnP rule
 for line in $LISTENING_PORTS
@@ -36,17 +36,17 @@ do
   fi
 
   RULE_TO_BE_CHECKED="${PROTOCOL} ${LISTENING_PORT}->${ETH_IP_ADDRESS}:${LISTENING_PORT}"
-  printf "[%s] Checking if \"${RULE_TO_BE_CHECKED}\" exists in the UPnP rules..." "$TIME"
+  printf "[%s] Checking if \"${RULE_TO_BE_CHECKED}\" exists in the UPnP rules...\n" "$TIME"
 
   # Continue to the next one if the current port is forwarded
   if echo "$EXISTING_RULES" | grep -q "$RULE_TO_BE_CHECKED"; then
-    printf "[%s] Found \"${RULE_TO_BE_CHECKED}\". Continueing to the next one." "$TIME"
+    printf "[%s] Found \"${RULE_TO_BE_CHECKED}\". Continueing to the next one.\n" "$TIME"
     continue
   fi
 
-  printf "========Adding new rule========"
+  printf "========Adding new rule========\n"
   upnpc -e "tiantang:$PROTOCOL:$LISTENING_PORT" -a "$ETH_IP_ADDRESS" "$LISTENING_PORT" "$LISTENING_PORT" "$PROTOCOL"
-  printf "==========Rule added==========="
+  printf "==========Rule added===========\n"
   printf "\n"
 done
 
@@ -59,10 +59,10 @@ do
   MATCHED_LINE_COUNT=$(echo "${LISTENING_PORTS}" | grep "${PROTOCOL}" | grep -c "${NETSTAT_TARGET_OUTPUT}")
 
   if [ "${MATCHED_LINE_COUNT}" = 0 ]; then
-    printf "[%s] Found invalid rule ${PORT}/${PROTOCOL}" "$TIME"
-    printf "========Deleting rule========"
+    printf "[%s] Found invalid rule ${PORT}/${PROTOCOL}\n" "$TIME"
+    printf "========Deleting rule========\n"
     upnpc -d "${PORT}" "${PROTOCOL}"
-    printf "========Rule deleted========="
+    printf "========Rule deleted=========\n"
   fi
 done
 
