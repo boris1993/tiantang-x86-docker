@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -8,10 +8,10 @@ set -e
 TIANTANG_UID=$(${COMMAND} | grep "uid" | awk '{printf("%s", $3)}')
 
 if [ -n "$TIANTANG_UID" ]; then
-  printf "====================================================\n"
-  printf "[%s] Your UID is: ${TIANTANG_UID}\n" "$TIME"
-  printf "\n"
-  qrencode -t UTF8 -m 2 -o - "${TIANTANG_UID}"
-  printf "\n"
-  printf "====================================================\n"
+  echo "===================================================="
+  echo "[$(print_time)] Your UID is: ${TIANTANG_UID}"
+  echo ""
+  qrencode -t UTF8 -m 2 -o - "$TIANTANG_UID"
+  echo ""
+  echo "===================================================="
 fi 
