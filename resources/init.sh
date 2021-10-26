@@ -21,4 +21,4 @@ print-qrcode.sh >> "${LOG_FILE}"
 
 # Then initialize the UPnP
 echo "[$(print_time)] Initializing UPnP port forwarding in the background" >> "$LOG_FILE"
-set-port-forwarding.sh | tee -a "$UPNP_LOG_FILE" "$LOG_FILE" 2>&1 &
+(set-port-forwarding.sh | tee -a "$UPNP_LOG_FILE" "$LOG_FILE" 2>&1 &) > /dev/null
