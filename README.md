@@ -1,6 +1,35 @@
-# 适用于x86架构群晖的甜糖星愿Docker镜像
+# 适用于x86架构群晖的甜糖星愿Docker镜像(已废弃)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker?ref=badge_shield)
+
+该仓库已废弃。甜糖星愿推出了官方镜像，原生支持x86架构，内置二维码生成及UPnP，故该镜像将不再更新。官方教程见[[N1盒子] 甜糖官方Docker版上线啦，支持自动更新！- 恩山](https://www.right.com.cn/forum/thread-5440460-22-1.html)
+
+可以使用如下`docker-compose`配置文件运行：
+
+```yaml
+---
+version: '3'
+
+services:
+  tiantang:
+    image: tiptime/ttnode:latest
+    restart: unless-stopped
+    container_name: tiantang
+    network_mode: host
+    hostname: ttnode
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # 指定要挂载为数据目录的本机位置
+      - /volume2/docker-data/tiantang:/mnt/data/ttnode:rw
+```
+
+---
 
 甜糖星愿计划是由甜糖公司结合边缘计算云厂商推出的用户激励计划。用户通过贡献闲置带宽，即可获取星愿积分。星愿可用于折现或兑换商品。
 
