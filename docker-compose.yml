@@ -11,6 +11,8 @@ services:
       - TZ=Asia/Shanghai
       # 设定为true来阻止脚本自动配置UPnP规则
       - SKIP_UPNP_AUTOCONFIG=false
+      # 设定为物理网卡的设备名，如 eth0，群晖通常为ovs_eth0
+      - ETH_ADAPTER_NAME=ovs_eth0
     volumes:
       # 指定要挂载为数据目录的本机位置
       - /volume2/docker-data/tiantang:/data:rw

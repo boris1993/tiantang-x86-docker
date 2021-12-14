@@ -6,6 +6,11 @@ if [ "$SKIP_UPNP_AUTOCONFIG" = true ]; then
   exit 0
 fi
 
+if [ -z "$ETH_ADAPTER_NAME" ]; then 
+  echo "[$(print_time)] ERROR: Environment variable ETH_ADAPTER_NAME is not set. Unable to determine the Ethernet interface. Skipping setting up UPnP."
+  exit 1
+fi
+
 EXPECTED_NUMBER_OF_LISTENING_PORTS=7
 
 RULE_NAME_REGEX="tiantang:(TCP|UDP):"
@@ -14,7 +19,7 @@ OLD_IFS="$IFS"
 IFS=$(printf '\n')
 
 # Retrieve the IP address of the active ethernet interface
-ETH_IP_ADDRESS=$(ip a sh up scope global | grep inet | awk '{split($2,a,"/"); print a[1]}')
+ETH_IP_ADDRESS=$(ip a sh dev "$ETH_ADAPTER_NAME" | grep inet | awk '{split($2,a,"/"); print a[1]}')
 
 LISTENING_PORTS=$(netstat -nlp | grep ttnode)
 NUMBER_OF_LISTENING_PORTS=$(echo "$LISTENING_PORTS" | wc -l)
