@@ -5,24 +5,12 @@ services:
   tiantang:
     image: boris1993/tiantang-x86-docker:latest
     restart: always
-    privileged: true
-    networks:
-      # 这里需要与下面 networks 中配置的网络设备名相同
-      macvlan:
-        # 指定一个在你的网络中有效且未被占用的IP地址
-        ipv4_address: 192.168.1.240
+    network_mode: host
     container_name: tiantang
     environment:
       - TZ=Asia/Shanghai
       # 设定为true来阻止脚本自动配置UPnP规则
       - SKIP_UPNP_AUTOCONFIG=false
     volumes:
-      - ./resources/qemu-aarch64-static:/usr/bin/qemu-aarch64-static:ro
       # 指定要挂载为数据目录的本机位置
       - /volume2/docker-data/tiantang:/data:rw
-
-networks:
-  # 这里修改为刚才创建的macvlan网络的名字
-  macvlan:
-    external: true
-

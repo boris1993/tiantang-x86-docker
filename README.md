@@ -1,4 +1,4 @@
-# 适用于x86架构群晖的甜糖星愿Docker镜像(已废弃)
+# 适用于x86架构群晖的甜糖星愿Docker镜像
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker?ref=badge_shield)
 
@@ -12,41 +12,10 @@
 
 - 在套件中心安装Docker套件
 - 进入`控制面板`--`网络`--`网络界面`，选择连接公网的接口，如`局域网1`，点击`管理`--`Open vSwitch设置`，勾选`启用 Open vSwitch`，点击`确定`保存设置
-- 通过SSH连接到群晖，执行如下命令，创建一个`macvlan`网络
-
-```bash
-docker network create \
-    -d macvlan \
-    --subnet=192.168.1.0/24 \
-    --gateway=192.168.1.1 \
-    -o parent=ovs_eth0 \
-    macvlan
-```
-
-这里`subnet`要改成与你路由器处于同一网段的子网，`gateway`要改成你的路由器的地址，`parent`指定为群晖连接公网所使用的接口名。最后的`macvlan`是网络的名字，可按需修改。
-
-### 准备ARM64(aarch64)模拟环境
-
-下载或克隆本仓库，将[resources/qemu-aarch64-static](resources/qemu-aarch64-static)文件复制到`$PATH`指定的目录，如`/usr/local/bin`并赋予执行权限，然后执行`docker run --rm --privileged multiarch/qemu-user-static:register`。
-
-因为群晖在重启后会丢失上一步的设定，所以需要添加一项开机触发的任务，在每次开机后重新准备模拟环境。
-
-首先将本仓库的`set_qemu_user_static.sh`放到一个合适的位置，比如我放到了`/var/services/homes/boris1993/scripts`。
-
-然后前往`控制面板`--`任务计划`，然后按照如下说明新增一个任务计划：
-
-- 任务名称：可自选
-- 用户账号：root
-- 事件：开机
-- 任务设置--运行命令：
-  - 如果不关心日志的话，那么输入`/var/services/homes/boris1993/scripts/set_qemu_user_static.sh`
-  - 如果要保存日志的话，那么输入`/var/services/homes/boris1993/scripts/set_qemu_user_static.sh > /var/services/homes/boris1993/scripts/logs/set_qemu_user_static.log`。注意修改重定向符`>`后面的路径到实际你想要保存日志文件的路径。
 
 ### 构建镜像并运行
 
 进入该仓库所在目录，修改[docker-docker-compose.yml](docker-docker-compose.yml)。需要修改的内容参考该文件内的注释。
-
-然后执行`sudo docker-compose build`构建镜像。在构建成功完成后，会生成一个名为`tiantang:latest`的镜像。
 
 接下来执行`sudo docker-compose up -d`即可启动该镜像。
 
