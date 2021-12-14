@@ -16,14 +16,14 @@ IFS=$(printf '\n')
 # Retrieve the IP address of the active ethernet interface
 ETH_IP_ADDRESS=$(ip a sh up scope global | grep inet | awk '{split($2,a,"/"); print a[1]}')
 
-LISTENING_PORTS=$(netstat -nlp | grep qemu)
+LISTENING_PORTS=$(netstat -nlp | grep ttnode)
 NUMBER_OF_LISTENING_PORTS=$(echo "$LISTENING_PORTS" | wc -l)
 
 while [ "$NUMBER_OF_LISTENING_PORTS" != "$EXPECTED_NUMBER_OF_LISTENING_PORTS" ]; do
   echo "[$(print_time)] Found $NUMBER_OF_LISTENING_PORTS, less than the expecting of $EXPECTED_NUMBER_OF_LISTENING_PORTS . Will re-check after 10 seconds."
   sleep 10
 
-  LISTENING_PORTS=$(netstat -nlp | grep qemu)
+  LISTENING_PORTS=$(netstat -4nlp | grep ttnode)
   NUMBER_OF_LISTENING_PORTS=$(echo "$LISTENING_PORTS" | wc -l)
 done
 

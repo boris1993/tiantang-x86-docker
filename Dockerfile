@@ -1,10 +1,7 @@
-FROM --platform=linux/arm64/v8 ubuntu:bionic
+FROM ubuntu:bionic
 
 ENV TZ=Asia/Shanghai
 ENV DEBIAN_FRONTEND=noninteractive
-
-ADD resources/sources.list /etc/apt/sources.list
-ADD resources/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 
 RUN apt update && apt upgrade -y 
 
@@ -13,6 +10,7 @@ RUN apt install -y tzdata cron iproute2 iputils-ping net-tools miniupnpc qrencod
 RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
 
 ADD resources/ttnode /usr/local/bin
+ADD resources/yfapp.conf /usr/local/bin
 ADD resources/set-variables.sh /usr/local/bin
 ADD resources/start.sh /usr/local/bin
 ADD resources/init.sh /usr/local/bin
