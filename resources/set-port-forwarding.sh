@@ -21,7 +21,7 @@ IFS=$(printf '\n')
 # Retrieve the IP address of the active ethernet interface
 ETH_IP_ADDRESS=$(ip a sh dev "$ETH_ADAPTER_NAME" | grep -v inet6 | grep inet | awk '{split($2,a,"/"); print a[1]}')
 
-LISTENING_PORTS=$(netstat -nlp | grep ttnode)
+LISTENING_PORTS=$(netstat -4nlp | grep ttnode)
 NUMBER_OF_LISTENING_PORTS=$(echo "$LISTENING_PORTS" | wc -l)
 
 while [ "$NUMBER_OF_LISTENING_PORTS" != "$EXPECTED_NUMBER_OF_LISTENING_PORTS" ]; do
