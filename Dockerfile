@@ -9,7 +9,6 @@ ADD resources/set-variables.sh /usr/local/bin
 ADD resources/start.sh /usr/local/bin
 ADD resources/init.sh /usr/local/bin
 ADD resources/liveness-check.sh /usr/local/bin
-ADD resources/set-port-forwarding.sh /usr/local/bin
 ADD resources/print-qrcode.sh /usr/local/bin
 ADD resources/cronjob /etc/cron.d/liveness-check
 
