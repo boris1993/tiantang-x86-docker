@@ -12,4 +12,6 @@ liveness-check.sh &
 
 init.sh &
 
+redirect-yfnode-log.sh &
+
 tail -f /var/log/app.log
