@@ -1,6 +1,8 @@
 # 适用于x86架构群晖的甜糖星愿Docker镜像
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fboris1993%2Ftiantang-x86-docker?ref=badge_shield)
+[![Docker Hub Pulls](https://img.shields.io/docker/pulls/boris1993/tiantang-x86-docker)](https://hub.docker.com/r/boris1993/tiantang-x86-docker)
+[![Sync to GitEE](https://github.com/boris1993/tiantang-x86-docker/actions/workflows/sync-to-gitee.yml/badge.svg?branch=master)](https://gitee.com/boris1993/tiantang-x86-docker)
+[![Build and publish the image](https://github.com/boris1993/tiantang-x86-docker/actions/workflows/build-image.yml/badge.svg)](https://hub.docker.com/r/boris1993/tiantang-x86-docker)
 
 甜糖星愿计划是由甜糖公司结合边缘计算云厂商推出的用户激励计划。用户通过贡献闲置带宽，即可获取星愿积分。星愿可用于折现或兑换商品。
 
