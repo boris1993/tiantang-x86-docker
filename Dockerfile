@@ -13,7 +13,7 @@ ADD resources/print-qrcode.sh /usr/local/bin
 ADD resources/cronjob /etc/cron.d/liveness-check
 
 RUN apt update && apt upgrade -y \
-  && apt install -y tzdata cron iproute2 iputils-ping net-tools miniupnpc qrencode \
+  && apt install -y tzdata cron iproute2 iputils-ping net-tools qrencode \
   && echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash \
   && mkdir /data \
   && touch /var/log/app.log \
