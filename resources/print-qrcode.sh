@@ -5,7 +5,7 @@ set -e
 # shellcheck disable=SC1091
 . /usr/local/bin/set-variables.sh
 
-TIANTANG_UID=$(${COMMAND} | grep "uid" | awk '{printf("%s", $3)}')
+TIANTANG_UID=$(${COMMAND} | grep "uid" | awk '{printf("%s", $5)}')
 
 if [ -n "$TIANTANG_UID" ]; then
   echo "===================================================="
