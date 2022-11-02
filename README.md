@@ -17,7 +17,7 @@
 
 ### 启动容器
 
-进入该仓库所在目录，修改[docker-docker-compose.yml](docker-docker-compose.yml)。需要修改的内容参考该文件内的注释。
+进入该仓库所在目录，修改[docker-compose.yml](docker-compose.yml)。需要修改的内容参考该文件内的注释。
 
 接下来执行`sudo docker-compose up -d`即可启动该镜像。
 

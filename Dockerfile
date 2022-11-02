@@ -4,7 +4,7 @@ ENV TZ=Asia/Shanghai
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && apt upgrade -y \
-  && apt install -y tzdata cron iproute2 iputils-ping net-tools qrencode \
+  && apt install -y tzdata cron iproute2 iputils-ping net-tools qrencode iptables \
   && echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash \
   && mkdir /data \
   && touch /var/log/app.log 
